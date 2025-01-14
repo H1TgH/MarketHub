@@ -147,7 +147,7 @@ class GoodCategoryListView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)        
 
 class GoodListView(APIView, PageNumberPagination):
-    page_size = 20
+    page_size = 50
 
     def get(self, request):
         goods = Good.objects.all()

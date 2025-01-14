@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'drf_yasg',
+    'corsheaders'
 ]
 
 REST_FRAMEWORK = {
@@ -52,15 +53,20 @@ REST_FRAMEWORK = {
     ),
 }
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=15),  # Время жизни access-токена
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),     # Время жизни refresh-токена
-    'ROTATE_REFRESH_TOKENS': True,                  # Генерировать новый refresh-токен при обновлении
-    'BLACKLIST_AFTER_ROTATION': True,               # Делать старый refresh-токен недействительным
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7), 
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
